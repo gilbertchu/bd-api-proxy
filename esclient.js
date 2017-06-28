@@ -125,7 +125,9 @@ function bdsearch(params, callback) {
 
 // Search by name. First checks cache, then requests from external API if no results were found in cache
 exports.searchByName = function(name, callback) {
-  let query_string = name.split(' ').map(function(word) {
+  let query_string = name.split(' ').filter(function(word){
+    return word!=='';
+  }).map(function(word) {
     return word+'*';
   }).join(' AND ');
 
